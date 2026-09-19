@@ -180,7 +180,7 @@
   /* 眨眼节奏随机化（每次打开更自然） */
   var lids = document.querySelectorAll(".dh-lid");
   if (lids.length) {
-    var blinkBase = 3.8 + Math.random() * 1.6;
+    var blinkBase = 2.8 + Math.random() * 1.6;
     lids[0].style.animationDuration = blinkBase.toFixed(2) + "s";
     lids[1].style.animationDuration = blinkBase.toFixed(2) + "s";
     lids[1].style.animationDelay = (blinkBase / 2).toFixed(2) + "s";
@@ -349,7 +349,7 @@
     else warn.push("语音✗");
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) warn.push("系统减少动画");
     if (window.__dhErrors && window.__dhErrors.length) warn.push("JS错误×" + window.__dhErrors.length);
-    ok.push("页面v6");
+    ok.push("页面v7");
     diagEl.textContent = ok.join(" ") + (warn.length ? " " + warn.join(" ") : "");
     diagEl.className = "dh-diag" + (warn.length ? " warn" : " ok");
   }
