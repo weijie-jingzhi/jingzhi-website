@@ -711,7 +711,11 @@ section[id] { scroll-margin-top: 84px; }
   border-radius: 50%; padding: 6px;
   background: linear-gradient(135deg, var(--cyan-400), var(--blue-600));
   box-shadow: 0 12px 32px rgba(22,119,255,.38);
-  animation: dhBob 4.2s ease-in-out infinite;
+  animation: dhBob 4.2s ease-in-out infinite, dhGlowPulse 3.2s ease-in-out infinite;
+}
+@keyframes dhGlowPulse {
+  0%, 100% { box-shadow: 0 12px 32px rgba(22,119,255,.38); }
+  50% { box-shadow: 0 12px 48px rgba(34,211,238,.62); }
 }
 .dh-portrait img {
   width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
@@ -727,10 +731,22 @@ section[id] { scroll-margin-top: 84px; }
   background: radial-gradient(circle, rgba(103,232,249,.4), transparent 70%);
   z-index: -1;
 }
+/* 全息扫描光效 */
+.dh-scan {
+  position: absolute; inset: 6px; border-radius: 50%; overflow: hidden; pointer-events: none;
+}
+.dh-scan::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -28%;
+  height: 26%;
+  background: linear-gradient(180deg, transparent, rgba(103,232,249,.32), transparent);
+  animation: dhScan 3.8s ease-in-out infinite;
+}
+@keyframes dhScan { 0% { top: -30%; } 55%, 100% { top: 118%; } }
 @keyframes dhSpin { to { transform: rotate(360deg); } }
 @keyframes dhBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 .speaking .dh-portrait::before { animation-duration: 3.4s; border-color: var(--cyan-400); }
-.listening .dh-portrait { box-shadow: 0 0 0 6px rgba(34,211,238,.28), 0 12px 32px rgba(22,119,255,.38); }
+.speaking .dh-scan::before { animation-duration: 1.9s; }
+.listening .dh-portrait { outline: 6px solid rgba(34,211,238,.28); }
 .listening .dh-portrait::after { animation: dhListen 1.4s ease-in-out infinite; }
 @keyframes dhListen { 0%,100% { opacity: .6; } 50% { opacity: 1; } }
 
@@ -792,7 +808,7 @@ section[id] { scroll-margin-top: 84px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal, .reveal-in { opacity: 1; transform: none; animation: none; transition: none; }
-  .hero-float, .dh-launcher::after, .dh-portrait, .dh-portrait::before, .dh-portrait::after, .dh-wave i { animation: none !important; }
+  .hero-float, .dh-launcher::after, .dh-portrait, .dh-portrait::before, .dh-portrait::after, .dh-scan::before, .dh-wave i { animation: none !important; }
 }
 
 /* ============ 响应式 ============ */
