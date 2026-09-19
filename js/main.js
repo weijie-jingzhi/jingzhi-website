@@ -349,7 +349,7 @@
     else warn.push("语音✗");
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) warn.push("系统减少动画");
     if (window.__dhErrors && window.__dhErrors.length) warn.push("JS错误×" + window.__dhErrors.length);
-    ok.push("页面v5");
+    ok.push("页面v6");
     diagEl.textContent = ok.join(" ") + (warn.length ? " " + warn.join(" ") : "");
     diagEl.className = "dh-diag" + (warn.length ? " warn" : " ok");
   }
