@@ -328,10 +328,43 @@
     }
   });
 
+  /* ---------- 状态自检（面板标题栏显示） ---------- */
+  var diagEl = document.getElementById("dhDiag");
+  function runDiag() {
+    if (!diagEl) return;
+    var ok = [], warn = [];
+    var lid = document.querySelector(".dh-lid");
+    if (lid) {
+      var cs = getComputedStyle(lid);
+      if (cs.animationName === "dhBlink" && parseFloat(cs.animationDuration) > 0) ok.push("眨眼✓");
+      else warn.push("眨眼✗");
+    } else warn.push("眨眼✗");
+    var p = document.querySelector(".dh-portrait");
+    if (p && getComputedStyle(p).animationName.indexOf("dhAlive") > -1) ok.push("摆动✓");
+    else warn.push("摆动✗");
+    var img = p && p.querySelector("img");
+    if (img && img.complete && img.naturalWidth > 0) ok.push("形象✓");
+    else warn.push("形象✗");
+    if (typeof speechSynthesis !== "undefined") ok.push("语音✓");
+    else warn.push("语音✗");
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) warn.push("系统减少动画");
+    if (window.__dhErrors && window.__dhErrors.length) warn.push("JS错误×" + window.__dhErrors.length);
+    diagEl.textContent = ok.join(" ") + (warn.length ? " " + warn.join(" ") : "");
+    diagEl.className = "dh-diag" + (warn.length ? " warn" : " ok");
+  }
+  window.__dhErrors = [];
+  window.addEventListener("error", function (e) {
+    window.__dhErrors.push(e.message);
+    runDiag();
+  });
+
   /* ---------- 开关面板 ---------- */
   function openPanel() {
     panel.classList.add("open");
     launcher.setAttribute("aria-expanded", "true");
+    figure.classList.add("dh-greet");
+    setTimeout(function () { figure.classList.remove("dh-greet"); }, 2000);
+    runDiag();
     if (!greeted) {
       greeted = true;
       pushMsg("bot", "您好，我是数字人蓝沃小智 👋 可以问我公司介绍、业务板块、工业AI产品等问题，或点击上方按钮收听语音介绍。");
