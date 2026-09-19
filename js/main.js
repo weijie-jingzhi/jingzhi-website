@@ -177,6 +177,15 @@
     if (!voiceOn) stopSpeak();
   });
 
+  /* 眨眼节奏随机化（每次打开更自然） */
+  var lids = document.querySelectorAll(".dh-lid");
+  if (lids.length) {
+    var blinkBase = 3.8 + Math.random() * 1.6;
+    lids[0].style.animationDuration = blinkBase.toFixed(2) + "s";
+    lids[1].style.animationDuration = blinkBase.toFixed(2) + "s";
+    lids[1].style.animationDelay = (blinkBase / 2).toFixed(2) + "s";
+  }
+
   /* ---------- 知识库（基于官网公开资料） ---------- */
   var KB = [
     {

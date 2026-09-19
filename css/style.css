@@ -707,7 +707,7 @@ section[id] { scroll-margin-top: 84px; }
 
 /* 数字人形象：汪伟头像（屏幕式）+ 实时表情动画 */
 .dh-portrait {
-  position: relative; width: 174px; aspect-ratio: 480 / 560; margin: 0 auto;
+  position: relative; width: 190px; height: 221.7px; aspect-ratio: 480 / 560; margin: 0 auto;
   border-radius: 20px; padding: 3px;
   background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(22,119,255,.95));
   box-shadow: 0 12px 32px rgba(22,119,255,.38);
@@ -720,10 +720,10 @@ section[id] { scroll-margin-top: 84px; }
 }
 /* 头部持续微动：摆动 + 浮动 */
 @keyframes dhAlive {
-  0%, 100% { transform: translateY(0) rotate(-1.1deg); }
-  22% { transform: translateY(-3px) rotate(-0.5deg); }
-  50% { transform: translateY(0) rotate(1.1deg); }
-  72% { transform: translateY(-2.5px) rotate(0.5deg); }
+  0%, 100% { transform: translateY(0) rotate(-1.6deg); }
+  22% { transform: translateY(-4px) rotate(-0.7deg); }
+  50% { transform: translateY(0) rotate(1.6deg); }
+  72% { transform: translateY(-3.5px) rotate(0.7deg); }
 }
 /* 呼吸感（画面轻微缩放） */
 @keyframes dhBreathe {
@@ -747,23 +747,23 @@ section[id] { scroll-margin-top: 84px; }
 @keyframes dhScan { 0% { top: -30%; } 55%, 100% { top: 118%; } }
 /* 眨眼（实时进行，两眼错峰） */
 .dh-lid {
-  position: absolute; width: 9%; height: 5%;
+  position: absolute; width: 7%; height: 4.6%;
   background: linear-gradient(180deg, rgb(197,163,145) 0%, rgb(214,175,155) 60%, rgb(148,110,94) 100%);
   border-radius: 50% / 55%;
   transform: translate(-50%, -50%) scaleY(0);
   transform-origin: 50% 0;
   pointer-events: none; z-index: 4;
-  animation: dhBlink 5.2s infinite;
+  animation: dhBlink 4.2s infinite;
 }
-.dh-lid-l { left: 49.5%; top: 34.3%; }
-.dh-lid-r { left: 38.1%; top: 44.9%; animation-delay: 2.6s; }
+.dh-lid-l { left: 54.4%; top: 25.2%; }
+.dh-lid-r { left: 46.9%; top: 32.1%; animation-delay: 2.1s; }
 @keyframes dhBlink {
   0%, 90.5%, 95.5%, 100% { transform: translate(-50%, -50%) scaleY(0); }
   92.5%, 94% { transform: translate(-50%, -50%) scaleY(1); }
 }
 /* 说话时嘴部开合（平时隐藏，露出照片原嘴） */
 .dh-mouth {
-  position: absolute; left: 38.1%; top: 62.6%; width: 15%; height: 3.2%;
+  position: absolute; left: 46.9%; top: 43.4%; width: 11%; height: 3.1%;
   background: radial-gradient(60% 80% at 50% 40%, #5a3a30, #3a2a24 75%);
   border-radius: 50%;
   transform: translate(-50%, -50%) scaleY(.12);
